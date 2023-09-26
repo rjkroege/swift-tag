@@ -27,6 +27,6 @@ func printFinderTags(_ fn: String) {
   }
 }
 
-printFinderTags("/Users/rjkroege/tools/mkconfig")
-printFinderTags("test")
-printFinderTags("guide")
+// printFinderTags("/Users/rjkroege/tools/mkconfig")
+// printFinderTags("test")
+// printFinderTags("guide")

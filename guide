@@ -14,14 +14,13 @@ swift build
 swift test
 
 # Run
-swift run  tag  foobar  02_Raisin_Exercise.mp3 /Users/rjkroege/wrks/docslocal/parents/audio-books/A_Courtesans_Scandal/*
+swift run  tag  ../mkconfig guide test
 
-swift run  tageditor -u --title 'Prune Exercise 4' --genre 'meditation'   --picture /Users/rjkroege/Desktop/rob-with-dog.jpg 02_Raisin_Exercise.mp3
-
-swift run tageditor --help
+swift run tag --help
 
 # Format
-swift-format -i -r Sources
+swift-format -i -r Sources 
+swift-format -i Package.swift
 Edit X/\.(swift)$/ e
 
 # NB: binary is here.
