@@ -1,0 +1,29 @@
+Edit X:tag/\+Errors: 1,$d
+X:tag/.*\.swift: w
+
+# Setup a library
+swift package init
+
+# Setup an executable
+swift package init --type executable
+
+# Build
+swift build 
+
+# Test
+swift test
+
+# Run
+swift run  tag  foobar  02_Raisin_Exercise.mp3 /Users/rjkroege/wrks/docslocal/parents/audio-books/A_Courtesans_Scandal/*
+
+swift run  tageditor -u --title 'Prune Exercise 4' --genre 'meditation'   --picture /Users/rjkroege/Desktop/rob-with-dog.jpg 02_Raisin_Exercise.mp3
+
+swift run tageditor --help
+
+# Format
+swift-format -i -r Sources
+Edit X/\.(swift)$/ e
+
+# NB: binary is here.
+./.build/arm*/debug/tag
+
