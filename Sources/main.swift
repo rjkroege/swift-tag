@@ -3,16 +3,11 @@
 
 import Foundation
 
-print("Hello, world!")
+func printFinderTags(_ fn: String) {
+  let url = URL.init(fileURLWithPath: fn)
 
-func fooey(_ fn: String) {
-  let r_url = URL.init(fileURLWithPath: fn)
-
-  print(r_url.debugDescription)
-
-  let urvs = try? r_url.resourceValues(forKeys: [
-    URLResourceKey.isRegularFileKey, URLResourceKey.tagNamesKey, URLResourceKey.isDirectoryKey,
-    URLResourceKey.totalFileSizeKey,
+  let urvs = try? url.resourceValues(forKeys: [
+    URLResourceKey.tagNamesKey, URLResourceKey.pathKey,
   ])
 
   guard let r_urvs = urvs else {
@@ -20,22 +15,18 @@ func fooey(_ fn: String) {
     return
   }
 
-  print("fooey middle \(r_urvs)")
-
-  if let r_tfs = r_urvs.totalFileSize {
-    print("totalFileSize \(r_tfs)")
+  // Strips out the files that don't have any tag at all. Is that I want? I
+  // can reconsider this later.
+  if let path = r_urvs.path, let tags = r_urvs.tagNames {
+    let joinedtags = tags[1...].reduce(
+      tags[0],
+      { x, y in
+        x + ", " + y
+      })
+    print("\(path): \(joinedtags)")
   }
-  if let r_irf = r_urvs.isRegularFile {
-    print("isRegularFile \(r_irf)")
-  }
-  if let r_id = r_urvs.isDirectory {
-    print("isDirectory \(r_id)")
-  }
-  if let r_tags = r_urvs.tagNames {
-    print("tagNames \(r_tags)")
-  }
-  print("fooey end")
-
 }
 
-fooey("/Users/rjkroege/tools/mkconfig")
+printFinderTags("/Users/rjkroege/tools/mkconfig")
+printFinderTags("test")
+printFinderTags("guide")
