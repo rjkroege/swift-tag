@@ -5,13 +5,12 @@ import Foundation
 
 func printFinderTags(_ fn: String) {
   let url = URL.init(fileURLWithPath: fn)
-
   let urvs = try? url.resourceValues(forKeys: [
     URLResourceKey.tagNamesKey, URLResourceKey.pathKey,
   ])
 
   guard let r_urvs = urvs else {
-    print("resourceValues failed!")
+    print("setFinderTags resourceValues failed. \(fn)  probably doesn't exist")
     return
   }
 
@@ -21,9 +20,9 @@ func printFinderTags(_ fn: String) {
     let joinedtags = tags[1...].reduce(
       tags[0],
       { x, y in
-        x + ", " + y
+        x + ", " + "@" + y
       })
-    print("\(path): \(joinedtags)")
+    print("\(path): @\(joinedtags)")
   }
 }
 
